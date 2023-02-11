@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "34922769814",
+    "project_id": "duckcart-task",
+    "storage_bucket": "duckcart-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34922769814:android:890a87d88c4a609be201b7",
+        "android_client_info": {
+          "package_name": "com.example.duckcart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34922769814-7feu92ichi40do1m3e10s034clc1tl79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.duckcart",
+            "certificate_hash": "d6935a98361d8cf9b90ec6912d6d777e6fd2189a"
+          }
+        },
+        {
+          "client_id": "34922769814-75gphlrm9eep57p2754e1hm3410g2t65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm5lXDOGHqRKEuUw273TbB9XLyfauSWnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34922769814-75gphlrm9eep57p2754e1hm3410g2t65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

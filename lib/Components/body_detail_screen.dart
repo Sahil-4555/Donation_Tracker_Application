@@ -1,3 +1,4 @@
+import 'package:duckcart/Components/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:duckcart/Models/Product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,6 +16,14 @@ class _BodyState extends State<Body> {
   final _nameController = TextEditingController();
   final _optionalController = TextEditingController();
 
+  void onSubmitClearTextField()
+  {
+    _amountController.clear();
+    _nameController.clear();
+    _optionalController.clear();
+    showSnackBar(context, "Your Support Has Been Added Successfully");
+  }
+
   @override
   void dispose() {
     _amountController.dispose();
@@ -22,6 +31,7 @@ class _BodyState extends State<Body> {
     _optionalController.dispose();
     super.dispose();
   }
+
 
   Future supportCreators() async {
     await FirebaseFirestore.instance.collection('CreatorsSupport').add({
@@ -31,6 +41,8 @@ class _BodyState extends State<Body> {
       'Message': _optionalController.text.trim(),
       'Name': _nameController.text.trim(),
     });
+
+    onSubmitClearTextField();
   }
 
   @override

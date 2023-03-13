@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>34922769814-vj1g7c49qdrrgrjkv4kvt91vc3e5hg97.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.34922769814-vj1g7c49qdrrgrjkv4kvt91vc3e5hg97</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>34922769814-7feu92ichi40do1m3e10s034clc1tl79.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC5uV3rjV1x8gebc2oTCsVOQwC0b8gM0vM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>34922769814</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.duckcart</string>
+	<key>PROJECT_ID</key>
+	<string>duckcart-task</string>
+	<key>STORAGE_BUCKET</key>
+	<string>duckcart-task.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:34922769814:ios:9b4ec433466337f1e201b7</string>
+</dict>
+</plist>

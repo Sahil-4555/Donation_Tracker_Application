@@ -1,7 +1,11 @@
+import 'package:duckcart/Components/next_screen.dart';
+import 'package:duckcart/Pages/login_screen.dart';
+import 'package:duckcart/Pages/user_details.dart';
+import 'package:duckcart/providers/sign_in_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:duckcart/Constants/constants.dart';
 import 'package:duckcart/Pages/body.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -11,6 +15,17 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  Future getData() async {
+    final sp = context.read<SignInProvider>();
+    sp.getDataFromSharedPreferences();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +35,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   AppBar buildAppBar() {
+    final sp = context.read<SignInProvider>();
     return AppBar(
       backgroundColor: Colors.deepPurple,
       elevation: 0,
@@ -27,15 +43,22 @@ class _MainPageState extends State<MainPage> {
         icon: const Icon(
           Icons.menu,
         ),
-        onPressed: () {},
+        onPressed: () {
+          sp.userSignOut();
+          nextScreenReplace(context, const LoginScreen());
+        },
         color: Colors.white,
       ),
-      actions: const <Widget>[
-        CircleAvatar(
-          radius: 22,
-          backgroundImage:
-              NetworkImage('https://www.woolha.com/media/2020/03/eevee.png'),
-          backgroundColor: Colors.transparent,
+      actions: <Widget>[
+        GestureDetector(
+          onTap: () {
+            nextScreen(context, UserDetails());
+          },
+          child: CircleAvatar(
+            radius: 22,
+            backgroundImage: NetworkImage("${sp.imageUrl}"),
+            backgroundColor: Colors.transparent,
+          ),
         ),
         SizedBox(width: kDefaultPadding)
       ],

@@ -41,6 +41,13 @@ dependencies:
   cloud_firestore: ^4.3.2
   firebase_auth: ^4.0.0
   firebase_core: ^2.4.1
+  google_sign_in:
+  provider:
+  flutter_facebook_auth:
+  shared_preferences:
+  rounded_loading_button:
+  font_awesome_flutter:
+  connectivity_plus:
 
 dev_dependencies:
   flutter_test:

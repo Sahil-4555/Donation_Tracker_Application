@@ -97,7 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: MediaQuery.of(context).size.width * 0.80,
                       elevation: 0,
                       borderRadius: 15,
-                      onPressed: () {},
+                      onPressed: () {
+                        handleFacebookAuth();
+                      },
                       // borderRadius: BorderRadius.circular(12),
                       child: Wrap(
                         children: const [
@@ -176,6 +178,46 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         },
       );
+    }
+  }
+
+  // handling facebookauth
+  Future handleFacebookAuth() async {
+    final sp = context.read<SignInProvider>();
+    final ip = context.read<InternetProvider>();
+    await ip.checkInternetConnection();
+
+    if (ip.hasInternet == false) {
+      openSnackbar(context, "Check your Internet connection", Colors.red);
+      facebookController.reset();
+    } else {
+      await sp.signInWithFacebook().then((value) {
+        if (sp.hasError == true) {
+          openSnackbar(context, sp.errorCode.toString(), Colors.red);
+          facebookController.reset();
+        } else {
+          // checking whether user exists or not
+          sp.checkUserExists().then((value) async {
+            if (value == true) {
+              // user exists
+              await sp.getUserDataFromFirestore(sp.uid).then((value) => sp
+                  .saveDataToSharedPreferences()
+                  .then((value) => sp.setSignIn().then((value) {
+                facebookController.success();
+                handleAfterSignIn();
+              })));
+            } else {
+              // user does not exist
+              sp.saveDataToFirestore().then((value) => sp
+                  .saveDataToSharedPreferences()
+                  .then((value) => sp.setSignIn().then((value) {
+                facebookController.success();
+                handleAfterSignIn();
+              })));
+            }
+          });
+        }
+      });
     }
   }
 

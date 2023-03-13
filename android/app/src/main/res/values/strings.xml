@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resource>
+    <string name="app_name">DuckCart177</string>
+    <string name="facebook_app_id">878326969894155</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">83adbc45e24427be484c0c7a58a231d3</string>
+</resource>

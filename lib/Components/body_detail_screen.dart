@@ -2,6 +2,8 @@ import 'package:duckcart/Components/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:duckcart/Models/Product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+import '../providers/sign_in_provider.dart';
 
 class Body extends StatefulWidget {
   final Product product;
@@ -16,8 +18,7 @@ class _BodyState extends State<Body> {
   final _nameController = TextEditingController();
   final _optionalController = TextEditingController();
 
-  void onSubmitClearTextField()
-  {
+  void onSubmitClearTextField() {
     _amountController.clear();
     _nameController.clear();
     _optionalController.clear();
@@ -32,21 +33,24 @@ class _BodyState extends State<Body> {
     super.dispose();
   }
 
-
-  Future supportCreators() async {
-    await FirebaseFirestore.instance.collection('CreatorsSupport').add({
+  Future supportCreators(String uid) async {
+    CollectionReference usersCollection =
+        FirebaseFirestore.instance.collection('CreatorsSupport');
+    CollectionReference userCollection =
+        usersCollection.doc(uid).collection(uid);
+    await userCollection.add({
       'Amount': int.parse(_amountController.text.trim()),
       'Creator ID': widget.product.id,
       'Currency': dropdownValue,
       'Message': _optionalController.text.trim(),
       'Name': _nameController.text.trim(),
     });
-
     onSubmitClearTextField();
   }
 
   @override
   Widget build(BuildContext context) {
+    final sp = context.watch<SignInProvider>();
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -212,7 +216,9 @@ class _BodyState extends State<Body> {
 
                           // Support Button
                           GestureDetector(
-                            onTap: supportCreators,
+                            onTap: () {
+                              supportCreators(sp.uid!);
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(

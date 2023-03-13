@@ -1,5 +1,6 @@
 import 'package:duckcart/Components/next_screen.dart';
 import 'package:duckcart/Pages/login_screen.dart';
+import 'package:duckcart/Pages/show_user_data.dart';
 import 'package:duckcart/Pages/user_details.dart';
 import 'package:duckcart/providers/sign_in_provider.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   AppBar buildAppBar() {
-    final sp = context.read<SignInProvider>();
+    final sp = context.watch<SignInProvider>();
     return AppBar(
       backgroundColor: Colors.deepPurple,
       elevation: 0,
@@ -44,15 +45,14 @@ class _MainPageState extends State<MainPage> {
           Icons.menu,
         ),
         onPressed: () {
-          sp.userSignOut();
-          nextScreenReplace(context, const LoginScreen());
+          nextScreen(context, const ShowUserData());
         },
         color: Colors.white,
       ),
       actions: <Widget>[
         GestureDetector(
           onTap: () {
-            nextScreen(context, UserDetails());
+            nextScreen(context, const UserDetails());
           },
           child: CircleAvatar(
             radius: 22,
@@ -60,7 +60,7 @@ class _MainPageState extends State<MainPage> {
             backgroundColor: Colors.transparent,
           ),
         ),
-        SizedBox(width: kDefaultPadding)
+        const SizedBox(width: kDefaultPadding)
       ],
     );
   }

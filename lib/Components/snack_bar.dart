@@ -11,7 +11,7 @@ void openSnackbar(context, snackMessage, color) {
       ),
       content: Text(
         snackMessage,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 14,
         ),
       ),
